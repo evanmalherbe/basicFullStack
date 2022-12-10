@@ -3,8 +3,10 @@ import React from "react";
 import "isomorphic-fetch";
 import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
+class App extends React.Component
+{
+  constructor(props)
+  {
     super(props);
     this.state = {
       error: null,
@@ -13,22 +15,26 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount()
+  {
     fetch("/data")
       .then((res) => res.json())
       .then(
-        (result) => {
+        (result) =>
+        {
           this.setState(
             {
               isLoaded: true,
               items: result.message,
             },
-            () => {
-              console.log("Data from backend is: " + this.state.items);
+            () =>
+            {
+              console.log("Data from server is: " + this.state.items);
             }
           );
         },
-        (error) => {
+        (error) =>
+        {
           this.setState({
             isLoaded: true,
             error,
@@ -37,13 +43,17 @@ class App extends React.Component {
       );
   }
 
-  render() {
+  render()
+  {
     const { error, isLoaded, items } = this.state;
-    if (error) {
+    if (error)
+    {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (!isLoaded)
+    {
       return <div>Loading...</div>;
-    } else {
+    } else
+    {
       return (
         <div>
           <p>{items}</p>
